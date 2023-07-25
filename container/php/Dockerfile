@@ -13,5 +13,9 @@ RUN docker-php-ext-install pdo_mysql
 # composerのインストール
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
+# Node.jsをインストール
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs
+
 # コンテナ内で作業する際のカレンとディレクトリの指定
 WORKDIR /var/www/html
