@@ -47,3 +47,18 @@ services:
     # srcディレクトリ内のファイルをコンテナ内の~/var/www/html配下にマウント
     volumes:
       - "./container/db/data:/var/lib/mysql"
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=db
+      - PMA_USER=laravel
+      - PMA_PASSWORD=password
+    ports:
+      - "3000:80"
+    volumes:
+      - ./container/phpmyadmin/sessions:/sessions
