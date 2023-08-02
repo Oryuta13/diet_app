@@ -24,6 +24,7 @@ Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.cre
 Route::post('/foods', [FoodsController::class, 'store'])->name('foods.store');
 Route::get('/foods/{food}/edit', [FoodsController::class, 'edit'])->name('foods.edit');
 Route::put('/foods/{food}/update', [FoodsController::class, 'update'])->name('foods.update');
+Route::delete('/foods/{food}/destroy', [FoodsController::class, 'destroy'])->name('foods.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -52,7 +52,12 @@ class FoodsController extends Controller
 
         $food->update($data);
 
-        return redirect(route('foods.index'))->with('success', 'Food Updated Succesffully');
+        return redirect(route('foods.index'))->with('success', 'Food Updated Successfully');
 
+    }
+
+    public function destroy(Foods $food){
+        $food->delete();
+        return redirect(route('foods.index'))->with('success', 'Food Deleted Successfully');
     }
 }
