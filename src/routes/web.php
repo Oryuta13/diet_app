@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FoodsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
+Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
+Route::post('/foods', [FoodsController::class, 'store'])->name('foods.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
