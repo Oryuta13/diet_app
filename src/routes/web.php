@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
 Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
 Route::post('/foods', [FoodsController::class, 'store'])->name('foods.store');
+Route::get('/foods/{food}/edit', [FoodsController::class, 'edit'])->name('foods.edit');
+Route::put('/foods/{food}/update', [FoodsController::class, 'update'])->name('foods.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
