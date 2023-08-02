@@ -36,4 +36,23 @@ class FoodsController extends Controller
 
         return redirect(route('foods.index'));
     }
+
+    public function edit(Foods $food){
+        return view('foods.edit', ['food' => $food]);
+    }
+
+    public function update(Foods $food, Request $request){
+        $data = $request->validate([
+            'name' => 'required',
+            'protein' => 'required|numeric',
+            'fat' => 'required|numeric',
+            'carbo' => 'required|numeric',
+            'kcal' => 'required|numeric',
+        ]);
+
+        $food->update($data);
+
+        return redirect(route('foods.index'))->with('success', 'Food Updated Succesffully');
+
+    }
 }

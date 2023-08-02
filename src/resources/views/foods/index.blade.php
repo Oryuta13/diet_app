@@ -8,6 +8,13 @@
 <body>
   <h1>Foods</h1>
   <div>
+    @if(session()->has('success'))
+      <div>
+        {{session('success')}}
+      </div>
+    @endif
+  </div>
+  <div>
     <table border="1">
       <tr>
         <th>ID</th>
@@ -16,8 +23,9 @@
         <th>Fat</th>
         <th>Carbo</th>
         <th>Kcal</th>
+        <th>Edit</th>
       </tr>
-      @foreach($foods as $food )
+        @foreach ($foods as $food )
         <tr>
           <td>{{$food->id}}</td>
           <td>{{$food->name}}</td>
@@ -25,8 +33,11 @@
           <td>{{$food->fat}}</td>
           <td>{{$food->carbo}}</td>
           <td>{{$food->kcal}}</td>
+          <td>
+            <a href="{{route('foods.edit', ['food' => $food])}}">Edit</a>
+          </td>
         </tr>
-      @endforeach
+        @endforeach
     </table>
   </div>
 </body>
