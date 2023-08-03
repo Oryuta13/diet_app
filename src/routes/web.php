@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
