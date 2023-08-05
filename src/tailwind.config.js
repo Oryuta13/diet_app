@@ -18,7 +18,8 @@ export default {
             },
         },
         backgroundImage: {
-            "img-bg": "url('/img/diet_img2.jpg')",
+            "img-bg": "url('/imgs/diet_img2.jpg')",
+            "img-bg2": "url('/imgs/diet_bg1.jpg')",
         },
     },
 
