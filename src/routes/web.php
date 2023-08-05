@@ -23,6 +23,14 @@ Route::get('/', function () {
     return view('top');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+
 Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
 Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
 Route::post('/foods', [FoodsController::class, 'store'])->name('foods.store');
