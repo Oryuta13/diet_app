@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ja">
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title', 'DietApp')</title>
+
+        <!-- Header -->
+        <header class="bg-amber-400 p-4">
+          <nav class="flex justify-between mx-auto px-8 container items-center">
+            <div class="font-bangers text-4xl">DietApp</div>
+            <div class="space-x-4 font-bold">
+                <a
+                href="{{ route('register') }}"
+                class="hover:text-green-200 transition-all duration-300">新規登録</a>
+                <a
+                href="{{ route('login') }}"
+                class="hover:text-green-200 transition-all duration-300">ログイン</a>
+            </div>
+          </nav>
+      </header>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -15,23 +30,10 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                @yield('content')
-            </main>
-        </div>
+    <body>
+        <!-- Page Content -->
+        <main>
+            @yield('content')
+        </main>
     </body>
 </html>
