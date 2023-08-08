@@ -3,6 +3,7 @@
 use App\Http\Controllers\FoodsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +20,23 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// トップページ
 Route::get('/', function () {
     return view('top');
-});
+})->name('top');
 
+// ログインページ
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
+// 新規登録ページ
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
+
+// ログアウト
+Route::post('/logout', 'Auth\LogoutController@logout')->name('logout');
 
 Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
 Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
