@@ -4,17 +4,8 @@ use App\Http\Controllers\FoodsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MetabolismController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -37,6 +28,12 @@ Route::get('/register', function () {
 
 // ログアウト
 Route::post('/logout', 'Auth\LogoutController@logout')->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/calculate-metabolism', [MetabolismController::class, 'showMetabolismForm'])->name('metabolism.form');
+    Route::post('/calculate-metabolism', [MetabolismController::class, 'calculateMetabolism'])->name('metabolism.calculate');
+    Route::get('/calculation-result', [MetabolismController::class, 'showCalculationResult'])->name('metabolism.result');
+});
 
 Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
 Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
