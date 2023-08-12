@@ -2,14 +2,11 @@
 
 use App\Http\Controllers\FoodsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MetabolismController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\MetabolismController;
 
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // トップページ
 Route::get('/', function () {
@@ -29,24 +26,28 @@ Route::get('/register', function () {
 // ログアウト
 Route::post('/logout', 'Auth\LogoutController@logout')->name('logout');
 
+// ダッシュボード
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
+
+// 基礎代謝計算機能
 Route::middleware(['auth'])->group(function () {
     Route::get('/calculate-metabolism', [MetabolismController::class, 'showMetabolismForm'])->name('metabolism.form');
     Route::post('/calculate-metabolism', [MetabolismController::class, 'calculateMetabolism'])->name('metabolism.calculate');
     Route::get('/calculation-result', [MetabolismController::class, 'showCalculationResult'])->name('metabolism.result');
 });
 
-Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
-Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
-Route::post('/foods', [FoodsController::class, 'store'])->name('foods.store');
-Route::get('/foods/{food}/edit', [FoodsController::class, 'edit'])->name('foods.edit');
-Route::put('/foods/{food}/update', [FoodsController::class, 'update'])->name('foods.update');
-Route::delete('/foods/{food}/destroy', [FoodsController::class, 'destroy'])->name('foods.destroy');
+// 食事内容CRUD機能
+Route::middleware(['auth'])->group(function () {
+    Route::get('/foods', [FoodsController::class, 'index'])->name('foods.index');
+    Route::get('/foods/create', [FoodsController::class, 'create'])->name('foods.create');
+    Route::post('/foods', [FoodsController::class, 'store'])->name('foods.store');
+    Route::get('/foods/{food}/edit', [FoodsController::class, 'edit'])->name('foods.edit');
+    Route::put('/foods/{food}/update', [FoodsController::class, 'update'])->name('foods.update');
+    Route::delete('/foods/{food}/destroy', [FoodsController::class, 'destroy'])->name('foods.destroy');
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+// プロフィール編集機能
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

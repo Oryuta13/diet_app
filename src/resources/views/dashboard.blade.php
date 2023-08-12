@@ -24,6 +24,12 @@
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-  2ページ目です
+  <div class="container">
+    <h1>マイページ</h1>
+    <ul>
+      <li><a href="{{ route('foods.index') }}">食事内容を追加する</a></li>
+      <li><a href="{{ route('metabolism.form') }}">あなたの基礎代謝を計算する</a></li>
+    </ul>
+  </div>
 </body>
 </html>
