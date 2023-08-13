@@ -8,9 +8,13 @@ use App\Models\foods;
 
 class FoodsController extends Controller
 {
-    public function index(){
-        $foods = Foods::all();
-        return view('foods.index', ['foods' => $foods]);
+    public function index(Request $request)
+    {
+        $selectedDate = $request->input('date') ?? now()->format('Y-m-d');
+        $loggedInUserId = Auth::id();
+        $foods = Foods::where('user_id', $loggedInUserId)->whereDate('created_at', $selectedDate)->get();
+
+        return view('foods.index', compact('foods', 'selectedDate'));
     }
 
     public function create(){
