@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>食事内容を追加する</title>
 </head>
 <body>
-  <h1>Create a Foods</h1>
+  <h1>食事内容を追加する</h1>
   <div>
     @if($errors->any())
     <ul>
@@ -21,27 +21,27 @@
     @csrf
     @method('post')
     <div>
-      <label>Name</label>
-      <input type="string" name="name" placeholder="Name" />
+      <label>食品名</label>
+      <input type="string" name="name" placeholder="食品名" />
     </div>
     <div>
-      <label>Protein</label>
-      <input type="integer" name="protein" placeholder="Protein" />
+      <label>タンパク質</label>
+      <input type="integer" name="protein" placeholder="タンパク質" />
     </div>
     <div>
-      <label>Fat</label>
-      <input type="integer" name="fat" placeholder="Fat" />
+      <label>脂質</label>
+      <input type="integer" name="fat" placeholder="脂質" />
     </div>
     <div>
-      <label>Carbo</label>
-      <input type="integer" name="carbo" placeholder="Carbo" />
+      <label>炭水化物</label>
+      <input type="integer" name="carbo" placeholder="炭水化物" />
     </div>
     <div>
-      <label>Kcal</label>
+      <label>カロリー</label>
       <input type="integer" name="kcal" placeholder="Kcal" />
     </div>
     <div>
-      <input type="submit" value="Save a New Foods" />
+      <input type="submit" value="Foodを追加する" />
     </div>
 
   </form>

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>食事内容を編集する</title>
 </head>
 <body>
-  <h1>Edit a Foods</h1>
+  <h1>食事内容を編集する</h1>
   <div>
     @if($errors->any())
     <ul>
@@ -21,27 +21,27 @@
     @csrf
     @method('put')
     <div>
-      <label>Name</label>
-      <input type="string" name="name" placeholder="Name" value="{{$food->name}}" />
+      <label>食品名</label>
+      <input type="string" name="name" placeholder="食品名" value="{{$food->name}}" />
     </div>
     <div>
-      <label>Protein</label>
-      <input type="integer" name="protein" placeholder="Protein" value="{{$food->protein}}"/>
+      <label>タンパク質</label>
+      <input type="integer" name="protein" placeholder="タンパク質" value="{{$food->protein}}"/>
     </div>
     <div>
-      <label>Fat</label>
-      <input type="integer" name="fat" placeholder="Fat" value="{{$food->fat}}" />
+      <label>脂質</label>
+      <input type="integer" name="fat" placeholder="脂質" value="{{$food->fat}}" />
     </div>
     <div>
-      <label>Carbo</label>
-      <input type="integer" name="carbo" placeholder="Carbo" value="{{$food->carbo}}" />
+      <label>炭水化物</label>
+      <input type="integer" name="carbo" placeholder="炭水化物" value="{{$food->carbo}}" />
     </div>
     <div>
-      <label>Kcal</label>
+      <label>カロリー</label>
       <input type="integer" name="kcal" placeholder="Kcal" value="{{$food->kcal}}" />
     </div>
     <div>
-      <input type="submit" value="Update" />
+      <input type="submit" value="編集する" />
     </div>
 
   </form>

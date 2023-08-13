@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>あなたの食事記録</title>
 </head>
 <body>
-  <h1>Foods</h1>
+  <h1>あなたの食事記録</h1>
   <div>
     @if(session()->has('success'))
       <div>
@@ -16,7 +16,14 @@
   </div>
   <div>
     <div>
-      <a href="{{route('foods.create')}}">Create a Food</a>
+      <a href="{{route('foods.create')}}">食事を追加する</a>
+    </div>
+    <div>
+      <form method="get" action="{{ route('foods.index') }}">
+        <label for="date">日付を選択: </label>
+        <input type="date" id="date" name="date" value="{{ $selectedDate }}" />
+        <button type="submit">表示する</button>
+      </form>
     </div>
     <table border="1">
       <tr>
@@ -38,13 +45,13 @@
           <td>{{$food->carbo}}</td>
           <td>{{$food->kcal}}</td>
           <td>
-            <a href="{{route('foods.edit', ['food' => $food])}}">Edit</a>
+            <a href="{{route('foods.edit', ['food' => $food])}}">編集</a>
           </td>
           <td>
             <form method="post" action="{{route('foods.destroy', ['food' => $food])}}">
               @csrf
               @method('delete')
-              <input type="submit" value="Delete" />
+              <input type="submit" value="削除" />
             </form>
           </td>
         </tr>
