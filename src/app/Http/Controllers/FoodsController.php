@@ -14,7 +14,15 @@ class FoodsController extends Controller
         $loggedInUserId = Auth::id();
         $foods = Foods::where('user_id', $loggedInUserId)->whereDate('created_at', $selectedDate)->get();
 
+        // タンパク質、脂質、炭水化物、カロリーの合計値を計算
+        $totalProtein = $foods->sum('protein');
+        $totalFat = $foods->sum('fat');
+        $totalCarbo = $foods->sum('carbo');
+        $totalKcal= $foods->sum('kcal');
+
+        // ビューにデータを渡す
         return view('foods.index', compact('foods', 'selectedDate'));
+
     }
 
     public function create(){
