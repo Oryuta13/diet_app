@@ -21,8 +21,15 @@ class FoodsController extends Controller
         $totalKcal= $foods->sum('kcal');
 
         // ビューにデータを渡す
-        return view('foods.index', compact('foods', 'selectedDate'));
-
+        dd($totalProtein);
+        return view('foods.index', [
+            'foods' => $foods,
+            'selectedDate' => $selectedDate,
+            'totalProtein' =>$totalProtein,
+            'totalFat' => $totalFat,
+            'totalCarbo' => $totalCarbo,
+            'totalKcal' => $totalKcal,
+        ]);
     }
 
     public function create(){
