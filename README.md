@@ -1,3 +1,3 @@
 # diet_app
 
-Usage
+・Usage
